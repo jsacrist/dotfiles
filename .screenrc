@@ -1,0 +1,21 @@
+screen -t bash 0
+#bind c screen 1                                # window numbering starts at 1 not 0
+
+bindkey "^[[5;5~" prev          # Ctrl + Page Dwn
+bindkey "^[[6;5~" next          # Ctrl + Page Up
+
+startup_message off
+hardstatus alwayslastline
+#hardstatus string "%{= kw}%-Lw%{= BW}[%n%f %t]%{-}%+Lw %-= %C%a"
+#hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{-}%+Lw %-= %W [%C%a]"
+hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%C%a]%{-}"
+#                  #######                                       Keep current style, white on black
+#                         ####                                   Print windows previous to current
+#                             #######                            Current style, white on blue
+#                                    ##########                  Current window [number flags title]
+#                                              ###               remove last style modification
+#                                                 ####           print windows above the current
+#                                                     #####      fill the remaining space with nothing
+#                                                          ####  print the time hh:mm[a|p]m
+#hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{-}%+Lw %-= [%Y-%m-%d %C%a]"
+
