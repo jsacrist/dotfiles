@@ -1,21 +1,21 @@
-screen -t bash 0
-#bind c screen 1                                # window numbering starts at 1 not 0
+screen -t bash 0								# Window numbering starts at 0
 
 bindkey "^[[5;5~" prev          # Ctrl + Page Dwn
 bindkey "^[[6;5~" next          # Ctrl + Page Up
 
 startup_message off
 hardstatus alwayslastline
-#hardstatus string "%{= kw}%-Lw%{= BW}[%n%f %t]%{-}%+Lw %-= %C%a"
-#hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{-}%+Lw %-= %W [%C%a]"
 hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%C%a]%{-}"
-#                  #######                                       Keep current style, white on black
-#                         ####                                   Print windows previous to current
-#                             #######                            Current style, white on blue
-#                                    ##########                  Current window [number flags title]
-#                                              ###               remove last style modification
-#                                                 ####           print windows above the current
-#                                                     #####      fill the remaining space with nothing
-#                                                          ####  print the time hh:mm[a|p]m
-#hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{-}%+Lw %-= [%Y-%m-%d %C%a]"
+#                  \_____/\__/\_____/ \_____/ \_____/\__/ \_/  \__/ \__/
+#                   |      |   |       |       |      |    |    |    |
+#                   |      |   |       |       |      |    |    |    \--- Restore colors to previous colors / undo last color change
+#                   |      |   |       |       |      |    |    \-------- Print the time hh:mm[a|p]m
+#                   |      |   |       |       |      |    \------------- Fill the remaining space with nothing
+#                   |      |   |       |       |      \------------------ List windows after current window (L [optional] = "include flags")
+#                   |      |   |       |       \------------------------- Set the colors to black (k) on bright white (W) and keep current text styles (=)
+#                   |      |   |       \--------------------------------- Current window [number flags title]
+#                   |      |   \----------------------------------------- Set colors to bright white (W) on blue (b) and keep current text styles (=)
+#                   |      \--------------------------------------------- List windows before current window (L [optional] = "include flags") 
+#                   \---------------------------------------------------- Set the colors to black (k) on bright white (W) and keep current text styles (=)
+#
 
