@@ -11,7 +11,7 @@ In order to quickly set up a fresh linux distro with these configuration files. 
 
 ```bash
 	git clone https://github.com/jsacrist/linux_config.git
-	cp linux_config/{.bashrc,.bash_aliases,.vimrc,.screenrc} .
+	find linux_config/ -not -path "*git*" -exec cp '{}' "$HOME/tmp/" \;
 	rm -rf linux_config
 ```
 
@@ -19,7 +19,7 @@ In order to quickly set up a fresh linux distro with these configuration files. 
 Or this one-liner if you prefer:
 
 ```bash
-	git clone https://github.com/jsacrist/linux_config.git && cp linux_config/{.bashrc,.bash_aliases,.vimrc,.screenrc} . && rm -rf linux_config
+	git clone https://github.com/jsacrist/linux_config.git && find linux_config/ -not -path "*git*" -exec cp '{}' "$HOME/tmp/" \; && rm -rf linux_config
 ```
 
 
