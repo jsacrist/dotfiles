@@ -5,7 +5,8 @@ bindkey "^[[6;5~" next          # Ctrl + Page Up
 
 startup_message off
 hardstatus alwayslastline
-hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%C%a]%{-}"
+hardstatus string "%{= kr}[%{r}%H]%{-} %-= %{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%Y-%m-%d %C%a]%{-}"
+#hardstatus string "%{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%C%a]%{-}"
 #                  \_____/\__/\_____/ \_____/ \_____/\__/ \_/  \__/ \__/
 #                   |      |   |       |       |      |    |    |    |
 #                   |      |   |       |       |      |    |    |    \--- Restore colors to previous colors / undo last color change
