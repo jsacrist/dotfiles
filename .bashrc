@@ -127,3 +127,8 @@ if [ -z "${STY}" -a -t 0 ]; then
 fi
 
 set -o vi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
