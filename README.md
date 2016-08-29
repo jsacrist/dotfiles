@@ -11,19 +11,7 @@ In order to quickly set up a fresh linux distro with these configuration files. 
 
 ```bash
 	git clone https://github.com/jsacrist/linux_config.git
-	find linux_config/ -not -path "*git*" -exec cp '{}' "$HOME/tmp/" \;
+	find linux_config/ -not -path "*git*" -exec cp -ir '{}' "$HOME/" \;
 	rm -rf linux_config
 ```
-
-
-Or this one-liner if you prefer:
-
-```bash
-	git clone https://github.com/jsacrist/linux_config.git && find linux_config/ -not -path "*git*" -exec cp '{}' "$HOME/tmp/" \; && rm -rf linux_config
-```
-
-
-
-
-
 
