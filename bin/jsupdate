@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git clone https://github.com/jsacrist/linux_config.git
+find linux_config/ -not -path "*git*" -exec cp -ir '{}' "$HOME/" \;
+rm -rf linux_config
