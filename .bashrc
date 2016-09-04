@@ -127,8 +127,9 @@ if [ -z "${STY}" -a -t 0 ]; then
 fi
 
 set -o vi
+tabs 4	# Set the width of a tab to 4 spaces
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" -a -z "$(echo $PATH | grep $HOME/bin)" ] ; then
+    export PATH="$HOME/bin:$PATH"
 fi
