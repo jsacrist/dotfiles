@@ -3,7 +3,6 @@
 cd $HOME
 git clone https://github.com/jsacrist/linux_config.git
 cd linux_config
-#find . -not -path "*git*" -exec cp -i --parent '{}' "$HOME/" \;
-find . -not -path "*git*" -exec update_file '{}' \;
+find . -not -path "*git*" -exec jsupdate_file '{}' \;
 cd ..
 rm -rf linux_config
