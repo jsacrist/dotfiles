@@ -5,7 +5,7 @@ OLD_FILE="$HOME/$FILE"
 if [ ! $"$FILE" == "./README.md" ]; then
 	if [ ! -e "$OLD_FILE" ] ; then
 		echo "No previous version of $FILE found, copying new one."
-		cp --parent "$FILE" "$OLD_FILE"
+		cp --parent "$FILE" "$HOME"
 	elif [ -f "$OLD_FILE" ] ; then
 		echo -n "Previous version of $FILE found... "
 	
