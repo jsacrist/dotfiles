@@ -2,23 +2,25 @@
 
 FILE="$1"
 OLD_FILE="$HOME/$FILE"
-if [ ! -e "$OLD_FILE" ] ; then
-	echo "No previous version of $FILE found, copying new one."
-	cp --parent "$FILE" "$OLD_FILE"
-elif [ -f "$OLD_FILE" ] ; then
-	echo -n "Previous version of $FILE found... "
-
-	SUM_OLD=$(sha1sum "$OLD_FILE" | awk '{print $1}')
-	SUM_NEW=$(sha1sum "$FILE" | awk '{print $1}')
-
-	if [ "$SUM_OLD" == "$SUM_NEW" ] ; then
-		echo "Files are identical, skipping"
-	else
-		echo "These are the differences between old and new versions: "
-
-		MYDIFF=$(diff "$OLD_FILE" "$FILE")
-		echo "$MYDIFF"
-		echo "####################################################"
-		cp -i --parent "$FILE" "$HOME"
+if [ ! $"$FILE" == "./README.md" ]; then
+	if [ ! -e "$OLD_FILE" ] ; then
+		echo "No previous version of $FILE found, copying new one."
+		cp --parent "$FILE" "$OLD_FILE"
+	elif [ -f "$OLD_FILE" ] ; then
+		echo -n "Previous version of $FILE found... "
+	
+		SUM_OLD=$(sha1sum "$OLD_FILE" | awk '{print $1}')
+		SUM_NEW=$(sha1sum "$FILE" | awk '{print $1}')
+	
+		if [ "$SUM_OLD" == "$SUM_NEW" ] ; then
+			echo "Files are identical, skipping"
+		else
+			echo "These are the differences between old and new versions: "
+	
+			MYDIFF=$(diff "$OLD_FILE" "$FILE")
+			echo "$MYDIFF"
+			echo "####################################################"
+			cp -i --parent "$FILE" "$HOME"
+		fi
 	fi
 fi
