@@ -1,0 +1,23 @@
+#!/bin/bash
+
+eval `resize`
+read -ra CURRENT_SCREENS <<<$(screen -ls  2>&1 | grep $HOSTNAME | \
+	awk '{print $1 " "; print $2 "_" $3 "_" $4 $5 }')
+
+NUM_SCREENS=${#CURRENT_SCREENS[@]}
+
+SELECTION=$(whiptail --title "Screen sessions" --menu "select your choice" \
+	$(( $NUM_SCREENS + 10 )) $(( $COLUMNS - 10 )) $(( $NUM_SCREENS + 2 )) \
+	"NEW" "Create a new screen session" \
+	"${CURRENT_SCREENS[@]}" \
+	"NO" "Do not create a new screen session"\
+	3>&1 1>&2 2>&3)
+
+if [ ! -z "$SELECTION" -a "$SELECTION" != "NO" ]; then
+	if [ "$SELECTION" == "NEW" ] ; then
+		screen
+	else
+		screen -dr $SELECTION
+	fi
+fi
+

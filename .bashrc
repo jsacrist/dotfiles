@@ -123,7 +123,8 @@ if [ -z "${STY}" -a -t 0 ]; then
         ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
         SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
     fi
-    screen
+    #screen
+	scrsel
 fi
 
 set -o vi
