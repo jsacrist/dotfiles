@@ -46,8 +46,8 @@ class Forward_server:
         if (self.listen_on == ''):
             self.local_address = socket.gethostname()
         else:
-            self.local_address = "%s(%s)" % (self.listen_on, socket.gethostname())
-
+            self.local_address = "%s(%s)" % (self.listen_on,
+                                            socket.gethostname())
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -142,7 +142,7 @@ def main(arguments):
                                      argparse.RawDescriptionHelpFormatter)
     
     ## Parsing Options            
-    parser.add_argument("-i", "--listen-on",
+    parser.add_argument("-l", "--listen-on",
                         type=str,
                         default='',
                         help="The local address in which to listen. If no "
