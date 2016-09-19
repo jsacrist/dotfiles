@@ -36,17 +36,25 @@ class Forward_server:
     input_list = []
     channel = {}
 
-    def __init__(self, from_port, to_host, to_port):
+    def __init__(self, listen_on, from_port, to_host, to_port):
+        self.listen_on = listen_on
         self.from_port = int(from_port)
         self.to_host = to_host
         self.to_port = int(to_port)
 
+        self.local_address = self.listen_on
+        if (self.listen_on == ''):
+            self.local_address = socket.gethostname()
+        else:
+            self.local_address = "%s(%s)" % (self.listen_on, socket.gethostname())
+
+
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.server.bind(('', self.from_port))
+        self.server.bind((self.listen_on, self.from_port))
         self.server.listen(200)
         logging.info("Forwarding    [*:*] ---> [%s:%d] ---> [%s:%d]" %
-                     (socket.gethostname(), self.from_port,
+                     (self.local_address, self.from_port,
                      self.to_host, self.to_port))
 
     def forward_loop(self):
@@ -134,18 +142,24 @@ def main(arguments):
                                      argparse.RawDescriptionHelpFormatter)
     
     ## Parsing Options            
+    parser.add_argument("-i", "--listen-on",
+                        type=str,
+                        default='',
+                        help="The local address in which to listen. If no "
+                        "address is given, all addresses will be bound.")
+    
     parser.add_argument("-f", "--from-port",
                         type=str,
-                        help="The port from which the forwarding takes place.")
+                        help="The port FROM which the forwarding takes place.")
     
     parser.add_argument("-a", "--to-address",
                         type=str,
                         default="localhost",
-                        help="The address to which the forwarding takes place.")
+                        help="The address TO which the forwarding takes place.")
 
     parser.add_argument("-t", "--to-port",
                         type=str,
-                        help="The port to which the forwarding takes place.")
+                        help="The port TO which the forwarding takes place.")
     
     args = parser.parse_args(arguments)
 
@@ -154,7 +168,8 @@ def main(arguments):
         parser.print_help()
         exit(-1)
 
-    server = Forward_server(args.from_port, args.to_address, args.to_port)
+    server = Forward_server(args.listen_on, args.from_port,
+                            args.to_address, args.to_port)
     try:
         server.forward_loop()
     except KeyboardInterrupt:
