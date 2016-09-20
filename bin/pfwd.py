@@ -136,7 +136,18 @@ class Forward_server:
         # Logging the data could be done here
         self.channel[self.s].send(data)
 
-#if __name__ == '__main__':
+def start_forwarding(listen_on, from_port, to_address, to_port):
+    server = Forward_server(listen_on, from_port, to_address, to_port)
+
+    try:
+        server.forward_loop()
+    except KeyboardInterrupt:
+        logging.info("Ctrl C - Stopping server")
+        sys.exit(1)
+    except Exception as my_exception:
+        logging.error("main() error: %s" % my_exception, exc_info=True)
+        sys.exit(2)
+
 def main(arguments):
     parser = argparse.ArgumentParser(formatter_class = \
                                      argparse.RawDescriptionHelpFormatter)
@@ -168,19 +179,9 @@ def main(arguments):
         parser.print_help()
         exit(-1)
 
-    server = Forward_server(args.listen_on, args.from_port,
-                            args.to_address, args.to_port)
-    try:
-        server.forward_loop()
-    except KeyboardInterrupt:
-        logging.info("Ctrl C - Stopping server")
-        sys.exit(1)
-    except Exception as my_exception:
-        logging.error("main() error: %s" % my_exception, exc_info=True)
-        sys.exit(2)
+    start_forwarding(args.listen_on, args.from_port,
+                     args.to_address, args.to_port)
 
 ################################################################################
-
-
 if __name__ == "__main__":    
     main(sys.argv[1:])
