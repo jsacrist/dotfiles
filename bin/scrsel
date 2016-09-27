@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#read -ra CURRENT_SCREENS <<<$(screen -ls  2>&1 | grep $HOSTNAME | \
-read -ra CURRENT_SCREENS <<<$(screen -ls  2>&1 | sed '1d;$d' | \
+read -ra CURRENT_SCREENS <<<$(screen -ls  2>&1 | grep "tached" | \
 	awk '{print $1 " "; print $5 $2 "_" $3 "_" $4}' )
 
 NUM_SCREENS=${#CURRENT_SCREENS[@]}
