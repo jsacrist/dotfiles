@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
@@ -113,7 +113,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
+################################################################################
 # Jorge's custom prompt
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;31m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;34m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
 
@@ -128,10 +128,16 @@ if [ -z "${STY}" -a -t 0 ]; then
         ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
         SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
     fi
-    #screen
-	scrsel
+
+    # Don't invoke screen when in the main terminal
+    if [ "$SHLVL" -gt 1  -o  ! -z "$SSH_TTY" ] ; then
+        scrsel
+    fi
 fi
 
+# Set vi's behaviour
 set -o vi
-tabs 4	# Set the width of a tab to 4 spaces
+
+# Set the width of a tab to 4 spaces
+tabs 4    # Set the width of a tab to 4 spaces
 
