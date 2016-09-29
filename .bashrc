@@ -130,7 +130,7 @@ if [ -z "${STY}" -a -t 0 ]; then
     fi
 
     # Don't invoke screen when in the main terminal
-    if [ "$SHLVL" -gt 1  -o  ! -z "$SSH_TTY" ] ; then
+    if [ "$TERM" != "linux" ] ; then
         scrsel
     fi
 fi
