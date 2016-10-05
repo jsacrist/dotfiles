@@ -37,16 +37,12 @@ map <F2> :TlistToggle<CR>
 
 set tags=./tags,tags
 
-if &diff
-	filetype plugin indent on
-	set tabstop=4
-	set shiftwidth=4
-	set noexpandtab
-else
+if ! &diff
 	au BufRead,BufNewFile * match ErrorMsg /\%>80v.\+/
-	filetype plugin indent on
-	set tabstop=4
-	set shiftwidth=4
-	set noexpandtab
 endif
+
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
 
