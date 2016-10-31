@@ -203,7 +203,7 @@ def set_color_by_status(service):
         set_led_color("purple")
     return result
 
-def monitor_buttons(time_interval=200*__TIME_1MS):
+def monitor_buttons(time_interval=20*__TIME_1MS):
     time.sleep(time_interval)
     if (press_release_button(__PIN__BUTTON1)):
         result = set_color_by_status(my_service)
