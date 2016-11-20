@@ -6,6 +6,9 @@ set sw=4        " Shiftwidth
 set ai          " Autoindent.
 set incsearch   " Incremental Search
 set hlsearch    " Highlight search - set nohl to turn off.
+set paste
+set nowrap
+set expandtab
 set ruler
 set number
 set directory=.
@@ -42,7 +45,4 @@ if ! &diff
 endif
 
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
 
