@@ -17,13 +17,13 @@ if [ ! $"$FILE" == "./README.md" ]; then
         else
             MYDIFF=$(diff --strip-trailing-cr "$OLD_FILE" "$FILE")
             if [ "$MYDIFF" == "" ] ; then
-                echo "Except for trailing carriage returns (CR), files are identical, skipping"
+                echo "Except for trailing carriage returns (CR), files are identical... "
             else
                 echo "These are the differences between old and new versions:"
                 echo "$MYDIFF"
                 echo "################################################################################"
-                cp -i --parent "$FILE" "$HOME"
             fi
+            cp -i --parent "$FILE" "$HOME"
         fi
     fi
 fi
