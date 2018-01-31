@@ -3,7 +3,7 @@
 #    name = myName 
 [core]
     fileMode = false
-    autocrlf = true
+    autocrlf = input
 [diff "image"]
     command = ~/bin/git-imgdiff
 [alias]
