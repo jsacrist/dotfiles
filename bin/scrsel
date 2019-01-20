@@ -1,11 +1,8 @@
 #!/bin/bash
 
 ALL_SCREEN_SESSIONS=$(screen -ls 2>&1 | grep -v "^$" | grep "tached" | awk '{print $1 ";" $5 " " $2 " " $3 " " $4 ";"}' | tr -d "\n")
-
 TOTAL_ELEMENTS=$(echo $ALL_SCREEN_SESSIONS | awk -F';' '{print NF}')
-
-for (( ELEMENT=1; ELEMENT<$TOTAL_ELEMENTS; ELEMENT++ ))
-do
+for (( ELEMENT=1; ELEMENT<$TOTAL_ELEMENTS; ELEMENT++ )) ; do
     MY_ARR[$ELEMENT]=$(echo $ALL_SCREEN_SESSIONS | awk -F';' -v col="$ELEMENT" '{print $col}')
 done
 
@@ -13,7 +10,6 @@ NUM_ELEMENTS=${#MY_ARR[@]}
 if [ "$NUM_ELEMENTS" == 0 ] ; then
     screen
 else
-
     OPTION_NEW="New screen"
     OPTION_NO="No screen"
     INSTRUC="Make a selection"
@@ -23,8 +19,8 @@ else
         "${MY_ARR[@]}" \
         "$OPTION_NO" "Do not create a new screen session"\
         3>&1 1>&2 2>&3)
-
-    if [ ! -z "$SELECTION" -a "$SELECTION" != "$OPTION_NO" ]; then
+    
+    if [ ! -z "$SELECTION" -a "$SELECTION" != "$OPTION_NO" ] ; then
         if [ "$SELECTION" == "$OPTION_NEW" ] ; then
             screen
         else
