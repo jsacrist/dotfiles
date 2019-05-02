@@ -116,6 +116,7 @@ fi
 ################################################################################
 # Jorge's custom prompt
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;31m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;34m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+unset PROMPT_COMMAND
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" -a -z "$(echo $PATH | grep $HOME/bin)" ] ; then
