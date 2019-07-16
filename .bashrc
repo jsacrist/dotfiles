@@ -88,6 +88,9 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -116,12 +119,16 @@ fi
 ################################################################################
 # Jorge's custom prompt
 export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;31m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;34m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+
+# Needed in RedHat environments, otherwise the 'tabs' in GNU/Screen get wonky names
 unset PROMPT_COMMAND
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" -a -z "$(echo $PATH | grep $HOME/bin)" ] ; then
-    export PATH="$HOME/bin:$PATH"
-fi
+for BINDIR in "$HOME/.local/bin" "$HOME/bin" ; do
+    if [ -d "$BINDIR" -a -z "$(echo $PATH | grep $BINDIR)" ] ; then
+        export PATH="$BINDIR:$PATH"
+    fi
+done
 
 # Jorge's custom screen
 if [ -z "${STY}" -a -t 0 ]; then
@@ -131,7 +138,6 @@ if [ -z "${STY}" -a -t 0 ]; then
     fi
 
     # Don't invoke screen when in the main terminal
-    #if [ "$TERM" != "linux" ] ; then
     if [ "$TERM" != "linux" -o ! -z "$SSH_TTY" ] ; then
         scrsel
     fi
