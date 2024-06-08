@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 cd $HOME
-git clone https://github.com/jsacrist/linux_config.git
-cd linux_config
+git clone https://github.com/jsacrist/dotfiles.git
+cd dotfiles
 find . -not -path "*/\.git\/*" -exec jsupdate_file '{}' \;
 cd ..
-rm -rf linux_config
+rm -rf dotfiles

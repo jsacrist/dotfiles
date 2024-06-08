@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ALL_SCREEN_SESSIONS=$(screen -ls 2>&1 | grep -v "^$" | grep "tached" | awk '{print $1 ";" $5 " " $2 " " $3 " " $4 ";"}' | tr -d "\n")
 TOTAL_ELEMENTS=$(echo $ALL_SCREEN_SESSIONS | awk -F';' '{print NF}')
