@@ -1,0 +1,9 @@
+screen -t bash 0								# Window numbering starts at 0
+
+bindkey "^[[5;5~" prev          # Ctrl + Page Dwn
+bindkey "^[[6;5~" next          # Ctrl + Page Up
+
+startup_message off
+layout save default
+hardstatus alwayslastline
+hardstatus string "%{= kr}[%{r}%H]%{-} %-= %{= kW}%-Lw%{= bW}[%n%f %t]%{= kW}%+Lw %-= [%Y-%m-%d %C%a]%{-}"

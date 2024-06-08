@@ -40,9 +40,9 @@ map <F2> :TlistToggle<CR>
 
 set tags=./tags,tags
 
-if ! &diff
-	au BufRead,BufNewFile * match ErrorMsg /\%>80v.\+/
-endif
+" if ! &diff
+" 	au BufRead,BufNewFile * match ErrorMsg /\%>80v.\+/
+" endif
 
 filetype plugin indent on
 

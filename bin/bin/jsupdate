@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+cd $HOME
+git clone https://github.com/jsacrist/dotfiles.git
+cd dotfiles
+find . -not -path "*/\.git\/*" -exec jsupdate_file '{}' \;
+cd ..
+rm -rf dotfiles

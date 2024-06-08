@@ -1,9 +1,9 @@
 [user]
-#    email = myEmail
-#    name = myName 
+    name = Jorge Sacristan
+    email = j.sacris@gmail.com
 [core]
     fileMode = false
-    autocrlf = input
+    autocrlf = false
 [diff "image"]
     command = ~/bin/git-imgdiff
 [alias]
@@ -11,3 +11,4 @@
     l2 = log --graph --full-history --color --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(bold)[%ad]%C(reset)%C(red)%d%C(reset) %s %C(green)<%cE>%C(reset) %C(yellow)%cn%C(reset)'   --date=format:'%Y-%m-%d %H:%M:%S'
     l3 = log --graph --full-history --color --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(bold)[%ad]%C(reset)%C(red)%d%C(reset) %s %C(green)<%cE>%C(reset) %C(yellow)%cn%C(reset)%n' --date=format:'%Y-%m-%d %H:%M:%S' --name-only
     l9 = log --graph --full-history --color --decorate --pretty=format:'%C(yellow)%h%C(reset) %C(bold)[%ad]%C(reset)%C(red)%d%C(reset) %s %C(green)<%cE>%C(reset) %C(yellow)%cn%C(reset)%n' --date=format:'%Y-%m-%d %H:%M:%S' --numstat
+

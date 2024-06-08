@@ -7,14 +7,9 @@ They contain my preferences, like aliases and look-n-feel for some command line 
 
 In order to quickly set up a fresh linux distro with these configuration files.  Run the following:
 
-~~~~
-cd $HOME
-git clone https://github.com/jsacrist/dotfiles.git
-cd dotfiles
-find . -not -path "*/\.git\/*" -exec cp -i --parent '{}' "$HOME/" \;
-cd ..
-rm -rf dotfiles
-~~~~
+```bash
+stow --adopt bash bin git screen ssh vim
+git restore .
+```
 
 WARNING: This repository includes my own version of .ssh/authorized_keys, don't donwload it if you don't know what that means!!!
-

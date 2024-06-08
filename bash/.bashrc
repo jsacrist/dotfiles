@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
     else
-        color_prompt=
+	color_prompt=
     fi
 fi
 
@@ -65,11 +65,11 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
-    *)
-        ;;
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
 esac
 
 # enable color support of ls and also add handy aliases
@@ -109,19 +109,43 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-        . /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-        . /etc/bash_completion
-    fi
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
 fi
+
 
 ################################################################################
 # Jorge's custom prompt
-export PS1="\[\e[00;32m\]\u\[\e[0m\]\[\e[00;37m\]@\[\e[0m\]\[\e[00;31m\]\H\[\e[0m\]\[\e[00;37m\]:\[\e[0m\]\[\e[01;34m\]\w\[\e[0m\]\[\e[00;37m\]\\$ \[\e[0m\]"
+PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 "(%s)")'
+PS1='[$?] \[\e[00;32m\]\u\[\e[00;37m\]@\[\e[00;31m\]\h\[\e[00;37m\]:\[\e[01;34m\]\w\[\e[00;33m\] ${PS1_CMD1}\[\e[0m\]\n\$ '
+#    |    |            | |            ||            | |            ||            | |             |          |        | |
+#    |    |            | |            ||            | |            ||            | |             |          |        | + "$" (prompt)
+#    |    |            | |            ||            | |            ||            | |             |          |        + New line
+#    |    |            | |            ||            | |            ||            | |             |          + Rest color to default
+#    |    |            | |            ||            | |            ||            | |             + Call to __git_ps1 to show git branch
+#    |    |            | |            ||            | |            ||            | + Set color 33 (yellow)
+#    |    |            | |            ||            | |            ||            |
+#    |    |            | |            ||            | |            ||            + Working directory (\w)
+#    |    |            | |            ||            | |            |+ Set color 34 (blue)
+#    |    |            | |            ||            | |            |
+#    |    |            | |            ||            | |            + ":"
+#    |    |            | |            ||            | + Set color 37 (white)
+#    |    |            | |            ||            |
+#    |    |            | |            ||            + Host (\h)
+#    |    |            | |            |+ Set color 31 (red)
+#    |    |            | |            |
+#    |    |            | |            + "@"
+#    |    |            | + Set color 37 (white)
+#    |    |            |
+#    |    |            + User (\u)
+#    |    + Set color 32 (green)
+#    + Print result of the last command executed ($?)
 
 # Needed in RedHat environments, otherwise the 'tabs' in GNU/Screen get wonky names
-unset PROMPT_COMMAND
+# unset PROMPT_COMMAND
 
 # set PATH so it includes user's private bin if it exists
 for BINDIR in "$HOME/.local/bin" "$HOME/bin" ; do
