@@ -155,18 +155,29 @@ for BINDIR in "$HOME/.local/bin" "$HOME/bin" ; do
 done
 
 # Jorge's custom screen
-if [ -z "${STY}" -a -t 0 ]; then
-    if [ -n "${SSH_AUTH_SOCK}" ]; then
-        ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
-        SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
-    fi
+## Look for tmux first
+SCR_MANAGER=$(which tmux)
 
-    # Don't invoke screen when in the main terminal
-    if [ "$TERM" != "linux" -o ! -z "$SSH_TTY" ] ; then
-        # scrsel
-        tmuxsel
+## If tmux is not found, look for screen
+if [ -z "${SCR_MANAGER}" ] ; then
+    SCR_MANAGER=$(which screen)
+fi
+
+## If either of them is found, determine if we should use it
+if [ ! -z "${SCR_MANAGER}" ] ; then
+    if [ -z "${STY}" -a -t 0 ]; then
+        if [ -n "${SSH_AUTH_SOCK}" ]; then
+            ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
+            SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
+        fi
+
+        # Don't invoke screen when in the main terminal
+        if [ "$TERM" != "linux" -a "$TERM" != "screen" -o ! -z "$SSH_TTY" ] ; then
+            $(${SCR_MANAGER})
+        fi
     fi
 fi
+
 
 # Set vi's behaviour
 set -o vi

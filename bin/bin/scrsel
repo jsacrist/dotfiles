@@ -15,8 +15,8 @@ NUM_ELEMENTS=${#MY_ARR[@]}
 if [ "$NUM_ELEMENTS" == 0 ] ; then
     ${EXECUTABLE}
 else
-    OPTION_NEW="New (${EXEC_NAME}) session"
-    OPTION_NO="No (${EXEC_NAME}) session"
+    OPTION_NEW="New session"
+    OPTION_NO="No session"
     INSTRUC="Make a selection"
     SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUC}" \
         20 80 12 \
