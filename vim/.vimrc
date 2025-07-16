@@ -46,3 +46,5 @@ set tags=./tags,tags
 
 filetype plugin indent on
 
+colorscheme desert
+

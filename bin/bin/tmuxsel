@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-EXECUTABLE="screen"
-EXEC_NAME="GNU/Screen"
-CMD_GET_SESSIONS="${EXECUTABLE} -ls"
-ALL_SCREEN_SESSIONS=$(${CMD_GET_SESSIONS} 2>&1  | grep "tached" | grep -v "^$" | awk '{print $1 ";" $5 " " $2 " " $3 " " $4 ";"}' | tr -d "\n")
+EXECUTABLE="tmux"
+EXEC_NAME="Tmux"
+CMD_GET_SESSIONS="${EXECUTABLE} ls"
+ALL_SCREEN_SESSIONS=$(${CMD_GET_SESSIONS} 2>&1 | grep ":" | grep -v "^$" | awk -F': ' '{print $1 ";" $2 ";"}' | tr -d "\n")
 TOTAL_ELEMENTS=$(echo $ALL_SCREEN_SESSIONS | awk -F';' '{print NF}')
 
 for (( ELEMENT=1; ELEMENT<$TOTAL_ELEMENTS; ELEMENT++ )) ; do
@@ -29,7 +29,8 @@ else
         if [ "${SELECTION}" == "${OPTION_NEW}" ] ; then
             ${EXECUTABLE}
         else
-            ${EXECUTABLE} -dr $SELECTION
+            ${EXECUTABLE} detach-client -s $SELECTION
+            ${EXECUTABLE} attach -t $SELECTION
         fi
     fi
 fi

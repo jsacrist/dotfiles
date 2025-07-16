@@ -163,7 +163,8 @@ if [ -z "${STY}" -a -t 0 ]; then
 
     # Don't invoke screen when in the main terminal
     if [ "$TERM" != "linux" -o ! -z "$SSH_TTY" ] ; then
-        scrsel
+        # scrsel
+        tmuxsel
     fi
 fi
 
