@@ -156,8 +156,10 @@ done
 
 # Jorge's custom screen
 
-## If either of them is found, determine if we should use it
+# If $STY is not set (we are not in a screen session), and this is a terminal
 if [ -z "${STY}" -a -t 0 ]; then
+    
+    # Reuse the same ssh-agent socket if it exists
     if [ -n "${SSH_AUTH_SOCK}" ]; then
         ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
         SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
