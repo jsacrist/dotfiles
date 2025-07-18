@@ -157,17 +157,15 @@ done
 # Jorge's custom screen
 
 ## If either of them is found, determine if we should use it
-if [ ! -z "${SCR_MANAGER}" ] ; then
-    if [ -z "${STY}" -a -t 0 ]; then
-        if [ -n "${SSH_AUTH_SOCK}" ]; then
-            ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
-            SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
-        fi
+if [ -z "${STY}" -a -t 0 ]; then
+    if [ -n "${SSH_AUTH_SOCK}" ]; then
+        ln -snf "${SSH_AUTH_SOCK}" "${HOME}/.ssh/agent-script"
+        SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
+    fi
 
-        # Invoke the screen-manager tool if we are not in a Linux console or already in a screen-manager session
-        if [ "$TERM" != "linux" -a "$TERM" != "screen" -o ! -z "$SSH_TTY" ] ; then
-            scrsel
-        fi
+    # Invoke the screen-manager tool if we are not in a Linux console or already in a screen-manager session
+    if [ "$TERM" != "linux" -a "$TERM" != "screen" -o ! -z "$SSH_TTY" ] ; then
+        scrsel
     fi
 fi
 
