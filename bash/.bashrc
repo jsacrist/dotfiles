@@ -155,13 +155,6 @@ for BINDIR in "$HOME/.local/bin" "$HOME/bin" ; do
 done
 
 # Jorge's custom screen
-## Look for tmux first
-SCR_MANAGER=$(which tmux)
-
-## If tmux is not found, look for screen
-if [ -z "${SCR_MANAGER}" ] ; then
-    SCR_MANAGER=$(which screen)
-fi
 
 ## If either of them is found, determine if we should use it
 if [ ! -z "${SCR_MANAGER}" ] ; then
@@ -171,9 +164,9 @@ if [ ! -z "${SCR_MANAGER}" ] ; then
             SSH_AUTH_SOCK="${HOME}/.ssh/agent-script" export SSH_AUTH_SOCK
         fi
 
-        # Don't invoke screen when in the main terminal
+        # Invoke the screen-manager tool if we are not in a Linux console or already in a screen-manager session
         if [ "$TERM" != "linux" -a "$TERM" != "screen" -o ! -z "$SSH_TTY" ] ; then
-            $(${SCR_MANAGER})
+            scrsel
         fi
     fi
 fi

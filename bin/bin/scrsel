@@ -1,9 +1,35 @@
 #!/usr/bin/env bash
 
-EXECUTABLE="screen"
-EXEC_NAME="GNU/Screen"
-CMD_GET_SESSIONS="${EXECUTABLE} -ls"
-ALL_SCREEN_SESSIONS=$(${CMD_GET_SESSIONS} 2>&1  | grep "tached" | grep -v "^$" | awk '{print $1 ";" $5 " " $2 " " $3 " " $4 ";"}' | tr -d "\n")
+# Assume tmux is available
+EXECUTABLE="tmux"
+EXEC_NAME="Tmux"
+CMD_GET_SESSIONS="${EXECUTABLE} ls"
+CMD_ALL_SESSIONS="${CMD_GET_SESSIONS} 2>&1 | grep ':' | grep -v '^$' | awk -F': ' '{print \$1 \";\" \$2 \";\"}' | tr -d '\n'"
+CMD_DETACH="${EXECUTABLE} detach-client -s"
+CMD_ATTACH="${EXECUTABLE} attach -t"
+
+SCR_MANAGER=$(which tmux)
+
+## If tmux is not found, look for screen
+if [ -z "${SCR_MANAGER}" ] ; then
+    SCR_MANAGER=$(which screen)
+
+    EXECUTABLE="screen"
+    EXEC_NAME="GNU/Screen"
+    CMD_GET_SESSIONS="${EXECUTABLE} -ls"
+    CMD_ALL_SESSIONS="${CMD_GET_SESSIONS} 2>&1  | grep 'tached' | grep -v '^$' | awk '{print \$1 \";\" \$5 \" \" \$2 \" \" \$3 \" \" $4 \";\"}' | tr -d '\n'"
+    CMD_DETACH="${EXECUTABLE} -d"
+    CMD_ATTACH="${EXECUTABLE} -r"
+fi
+
+## If Neither TMUX nor Screen is found, exit
+if [ -z "${SCR_MANAGER}" ] ; then
+    echo "Neither tmux nor screen is installed. Please install one of them to manage sessions."
+    exit 1
+fi
+
+ALL_SCREEN_SESSIONS=$(eval "${CMD_ALL_SESSIONS}")
+
 TOTAL_ELEMENTS=$(echo $ALL_SCREEN_SESSIONS | awk -F';' '{print NF}')
 
 for (( ELEMENT=1; ELEMENT<$TOTAL_ELEMENTS; ELEMENT++ )) ; do
@@ -29,7 +55,8 @@ else
         if [ "${SELECTION}" == "${OPTION_NEW}" ] ; then
             ${EXECUTABLE}
         else
-            ${EXECUTABLE} -dr $SELECTION
+            ${CMD_DETACH} $SELECTION
+            ${CMD_ATTACH} $SELECTION
         fi
     fi
 fi
