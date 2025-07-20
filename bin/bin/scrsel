@@ -39,24 +39,27 @@ done
 NUM_ELEMENTS=${#MY_ARR[@]}
 
 if [ "$NUM_ELEMENTS" == 0 ] ; then
+    # No sessions found, just open one and exit
     ${EXECUTABLE}
-else
-    OPTION_NEW="New session"
-    OPTION_NO="No session"
-    INSTRUC="Make a selection"
-    SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUC}" \
-        20 80 12 \
-        "${OPTION_NEW}" ": Create a new ${EXEC_NAME} session" \
-        "${MY_ARR[@]}" \
-        "${OPTION_NO}" ": Do not create a new ${EXEC_NAME} session"\
-        3>&1 1>&2 2>&3)
-    
-    if [ ! -z "${SELECTION}" -a "${SELECTION}" != "${OPTION_NO}" ] ; then
-        if [ "${SELECTION}" == "${OPTION_NEW}" ] ; then
-            ${EXECUTABLE}
-        else
-            ${CMD_DETACH} $SELECTION
-            ${CMD_ATTACH} $SELECTION
-        fi
+    exit 0
+fi
+
+# Sessions found, show a menu to select one
+OPTION_NEW="New session"
+OPTION_NO="No session"
+INSTRUC="Make a selection"
+SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUC}" \
+    20 80 12 \
+    "${OPTION_NEW}" ": Create a new ${EXEC_NAME} session" \
+    "${MY_ARR[@]}" \
+    "${OPTION_NO}" ": Do not create a new ${EXEC_NAME} session"\
+    3>&1 1>&2 2>&3)
+
+if [ ! -z "${SELECTION}" -a "${SELECTION}" != "${OPTION_NO}" ] ; then
+    if [ "${SELECTION}" == "${OPTION_NEW}" ] ; then
+        ${EXECUTABLE}
+    else
+        ${CMD_DETACH} $SELECTION
+        ${CMD_ATTACH} $SELECTION
     fi
 fi
