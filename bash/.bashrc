@@ -166,7 +166,7 @@ if [ -z "${STY}" -a -t 0 ]; then
     fi
 
     # Invoke the screen-manager tool if we are not in a Linux console or already in a screen-manager session
-    if [[ "$TERM" != "linux" && "$TERM" != "screen" ]] && [[ ! -z "$SSH_TTY" ]] ; then
+    if [[ "${TERM}" != "linux" && -z "${TMUX}" ]] && [[ ! -z "${SSH_TTY}" ]] ; then
         scrsel
     fi
 fi
