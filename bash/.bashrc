@@ -119,8 +119,8 @@ fi
 
 ################################################################################
 # Jorge's custom prompt
-PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 "(%s)")'
-PS1='[$?] \[\e[00;32m\]\u\[\e[00;37m\]@\[\e[00;31m\]\h\[\e[00;37m\]:\[\e[01;34m\]\w\[\e[00;33m\] ${PS1_CMD1}\[\e[0m\]\n\$ '
+#PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 "(%s)")'
+#PS1='[$?] \[\e[00;32m\]\u\[\e[00;37m\]@\[\e[00;31m\]\h\[\e[00;37m\]:\[\e[01;34m\]\w\[\e[00;33m\] ${PS1_CMD1}\[\e[0m\]\n\$ '
 #    |    |            | |            ||            | |            ||            | |             |          |        | |
 #    |    |            | |            ||            | |            ||            | |             |          |        | + "$" (prompt)
 #    |    |            | |            ||            | |            ||            | |             |          |        + New line
@@ -146,6 +146,8 @@ PS1='[$?] \[\e[00;32m\]\u\[\e[00;37m\]@\[\e[00;31m\]\h\[\e[00;37m\]:\[\e[01;34m\
 
 # Needed in RedHat environments, otherwise the 'tabs' in GNU/Screen get wonky names
 # unset PROMPT_COMMAND
+
+eval "$(starship init bash)"  # Use starship insted of setting PS1 manually
 
 # set PATH so it includes user's private bin if it exists
 for BINDIR in "$HOME/.local/bin" "$HOME/bin" ; do
