@@ -5,6 +5,7 @@ EXECUTABLE="tmux"
 EXEC_NAME="Tmux"
 CMD_GET_SESSIONS="${EXECUTABLE} ls"
 CMD_ALL_SESSIONS="${CMD_GET_SESSIONS} 2>&1 | grep ':' | grep -v '^$' | awk -F': ' '{print \$1 \";\" \$2 \";\"}' | tr -d '\n'"
+CMD_NEW_SESSION="${EXECUTABLE} -u"
 CMD_DETACH="${EXECUTABLE} detach-client -s"
 CMD_ATTACH="${EXECUTABLE} attach -t"
 
@@ -18,6 +19,7 @@ if [ -z "${SCR_MANAGER}" ] ; then
     EXEC_NAME="GNU/Screen"
     CMD_GET_SESSIONS="${EXECUTABLE} -ls"
     CMD_ALL_SESSIONS="${CMD_GET_SESSIONS} 2>&1  | grep 'tached' | grep -v '^$' | awk '{print \$1 \";\" \$5 \" \" \$2 \" \" \$3 \" \" $4 \";\"}' | tr -d '\n'"
+    CMD_NEW_SESSION="${EXECUTABLE}"
     CMD_DETACH="${EXECUTABLE} -d"
     CMD_ATTACH="${EXECUTABLE} -r"
 fi
@@ -40,7 +42,7 @@ NUM_ELEMENTS=${#MY_ARR[@]}
 
 if [ "$NUM_ELEMENTS" == 0 ] ; then
     # No sessions found, just open one and exit
-    ${EXECUTABLE}
+    ${CMD_NEW_SESSION}
     exit 0
 fi
 
@@ -57,7 +59,7 @@ SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUC}" \
 
 if [ ! -z "${SELECTION}" -a "${SELECTION}" != "${OPTION_NO}" ] ; then
     if [ "${SELECTION}" == "${OPTION_NEW}" ] ; then
-        ${EXECUTABLE}
+        ${CMD_NEW_SESSION}
     else
         ${CMD_DETACH} $SELECTION
         ${CMD_ATTACH} $SELECTION
