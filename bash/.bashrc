@@ -88,9 +88,9 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+#alias ll='ls -alF'
+#alias la='ls -A'
+#alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -121,31 +121,8 @@ fi
 # Jorge's custom prompt
 #PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 "(%s)")'
 #PS1='[$?] \[\e[00;32m\]\u\[\e[00;37m\]@\[\e[00;31m\]\h\[\e[00;37m\]:\[\e[01;34m\]\w\[\e[00;33m\] ${PS1_CMD1}\[\e[0m\]\n\$ '
-#    |    |            | |            ||            | |            ||            | |             |          |        | |
-#    |    |            | |            ||            | |            ||            | |             |          |        | + "$" (prompt)
-#    |    |            | |            ||            | |            ||            | |             |          |        + New line
-#    |    |            | |            ||            | |            ||            | |             |          + Rest color to default
-#    |    |            | |            ||            | |            ||            | |             + Call to __git_ps1 to show git branch
-#    |    |            | |            ||            | |            ||            | + Set color 33 (yellow)
-#    |    |            | |            ||            | |            ||            |
-#    |    |            | |            ||            | |            ||            + Working directory (\w)
-#    |    |            | |            ||            | |            |+ Set color 34 (blue)
-#    |    |            | |            ||            | |            |
-#    |    |            | |            ||            | |            + ":"
-#    |    |            | |            ||            | + Set color 37 (white)
-#    |    |            | |            ||            |
-#    |    |            | |            ||            + Host (\h)
-#    |    |            | |            |+ Set color 31 (red)
-#    |    |            | |            |
-#    |    |            | |            + "@"
-#    |    |            | + Set color 37 (white)
-#    |    |            |
-#    |    |            + User (\u)
-#    |    + Set color 32 (green)
-#    + Print result of the last command executed ($?)
-
 # Needed in RedHat environments, otherwise the 'tabs' in GNU/Screen get wonky names
-# unset PROMPT_COMMAND
+#unset PROMPT_COMMAND
 
 eval "$(starship init bash)"  # Use starship insted of setting PS1 manually
 
