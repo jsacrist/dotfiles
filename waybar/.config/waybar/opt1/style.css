@@ -1,0 +1,172 @@
+/* -- global rules -- */
+* {
+  border: none;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 15px;
+  min-height: 10px;
+}
+
+window#waybar {
+  background: rgba(34, 36, 54, 0.6);
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* -- General rules for visible modules -- */
+#custom-archicon,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#idle_inhibitor,
+#language,
+#pulseaudio,
+#network,
+#tray,
+#clock {
+  color: #161320;
+  transition: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  /* */
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: 5px;
+  margin-bottom: 1px;
+  /* */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* */
+
+#custom-archicon {
+  font-size: 20px;
+  color: #89B4FA;
+  background: #161320;
+  padding-right: 17px;
+}
+
+#cpu {
+  background: #96CDFB;
+}
+
+#memory {
+  background: #DDB6F2;
+}
+
+#disk {
+  background: #F5C2E7;
+}
+
+#temperature {
+  background: #F8BD96;
+}
+
+/* */
+#taskbar {
+  background: transparent;
+  border-radius: 10px;
+  padding: 0px 5px;
+  margin: 6px 5px;
+}
+
+#taskbar button {
+  padding: 0px 5px;
+  margin: 0px 3px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+#taskbar button.active {
+  background: rgba(34, 36, 54, 0.5);
+}
+
+#taskbar button:hover {
+  background: rgba(34, 36, 54, 0.5);
+}
+
+/* Modules: centre */
+#workspaces {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin: 6px 5px;
+  padding: 0px 6px;
+}
+
+#workspaces button {
+  color: #B5E8E0;
+  background: transparent;
+  padding: 4px 4px;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#workspaces button.occupied {
+  color: #A6E3A1;
+}
+
+#workspaces button.active {
+  color: #69F4FA;
+  text-shadow: 0 0 4px #ABE9B3;
+}
+
+#workspaces button:hover {
+  color: #89B4FA;
+}
+
+#workspaces button.active:hover {}
+
+/* */
+#idle_inhibitor {
+  background: #B5E8E0;
+  padding-right: 15px;
+}
+
+#language {
+  background: #A6E3A1;
+}
+
+/*
+#pulseaudio-slider {
+  color: #1A1826;
+  background: #E8A2AF;
+}
+#pulseaudio-slider slider {
+    min-width: 100px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+}
+*/
+
+#pulseaudio {
+  color: #1A1826;
+  background: #F5E0DC;
+  min-width: 55px;
+}
+
+#network {
+  background: #CBA6F7;
+}
+
+#tray {
+  background: #F5E3A7;
+}
+
+#clock {
+  background: #ABE9B3;
+}
+
+
+/* */
+@keyframes blink {
+  to {
+    background-color: #BF616A;
+    color: #B5E8E0;
+  }
+}

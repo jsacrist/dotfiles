@@ -1,0 +1,141 @@
+{
+  "layer": "top",
+  "position": "top",
+  "autohide": true,
+  "autohide-blocked": false,
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  /* === Modules Order === */
+  "modules-left": [
+    "custom/archicon",
+    "cpu",
+    "memory",
+    "disk",
+    "temperature",
+    "wlr/taskbar"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "idle_inhibitor",
+    "hyprland/language",
+    /*
+    "pulseaudio/slider",
+    */
+    "pulseaudio",
+    "network",
+    "tray",
+    "clock"
+  ],
+  /* === Modules Left === */
+  "custom/archicon": {
+    "format": "󰣛",
+    "on-click": "wofi --show drun",
+    "tooltip": false
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": true,
+    "tooltip-format": "CPU usage: {usage}%\nCores: {cores}"
+  },
+  "memory": {
+    "format": "{}% 󰍛",
+    "tooltip": true,
+    "tooltip-format": "Memory usage: {used} Gi / {total} Gi ({percentage}%)"
+  },
+  "disk": {
+    "format": "{percentage_used}% ",
+    "tooltip": true,
+    "tooltip-format": "{used} of {total}"
+  },
+  "temperature": {
+    "format": "{temperatureC}°C {icon}",
+    "tooltip": true,
+    "tooltip-format": "{temperatureC}°C\nCritical if > 80°C",
+    "format-icons": [
+      ""
+    ]
+  },
+  /* === Modules Center === */
+  // "hyprland/workspaces": {
+  //   "format": "{icon}",
+  //   "format-icons": {
+  //     "active": "",
+  //     "default": "",
+  //     "empty": ""
+  //   },
+  //   "persistent-workspaces": {
+  //     "*": 2
+  //   },
+  //   "disable-scroll": true,
+  //   "all-outputs": true,
+  //   "show-special": true
+  // },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "active-first": true,
+    "tooltip-format": "{name}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "rofi"
+    ]
+  },
+  /* === Modules Right === */
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip-format-activated": "Idle inhibitor activated: hyprlock will not be called automatically",
+    "tooltip-format-deactivated": "Idle inhibitor deactivated: hyprlock will be called by hypridle"
+  },
+  /*
+  "pulseaudio/slider": {
+    "format": "{volume}%",
+    "min": 0,
+    "max": 100,
+    "tooltip": false
+  },
+  */
+  "hyprland/language": {
+    "format": "{} ",
+    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+    "format-es": "ESP",
+    "format-en": "ENG"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "on-click": "pavucontrol",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": ["", "", ""]
+    }
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{ifname}   {essid} ({signalStrength}%)",
+    "format-ethernet": "{ifname} 󰈀",
+    "format-disconnected": " ",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{ifname}   {ipaddr}/{cidr}",
+    "tooltip-format-ethernet": "{ifname} 󰈀 {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "tray": {
+  },
+  "clock": {
+    "interval": 1, // updates every second
+    "format": "{:%Y-%d-%m  %I:%M:%S %p}",
+    "tooltip-format": "{calendar}",
+    "on-click": "gnome-calendar",
+    "calendar": {
+      "mode": "month"
+    }
+  }
+}

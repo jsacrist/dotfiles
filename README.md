@@ -8,7 +8,7 @@ They contain my preferences, like aliases and look-n-feel for some command line 
 In order to quickly set up a fresh linux distro with these configuration files.  Run the following:
 
 ```bash
-stow --adopt bash bin git i3 screen ssh starship tmux vim
+stow --adopt bash bin git hyprland i3 screen ssh starship tmux vim waybar
 git restore .
 ```
 
