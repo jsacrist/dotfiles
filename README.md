@@ -3,7 +3,7 @@
 This repository contains files I use on my linux system's home directory.
 They contain my preferences, like aliases and look-n-feel for some command line tools I use (vim, screen, git)
 
-# Instructions
+## Instructions
 
 In order to quickly set up a fresh linux distro with these configuration files.  Run the following:
 
