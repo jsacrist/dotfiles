@@ -7,7 +7,7 @@ CMD_GET_SESSIONS="${EXECUTABLE} ls"
 CMD_ALL_SESSIONS="${CMD_GET_SESSIONS} 2>&1 | grep ':' | grep -v '^$' | awk -F': ' '{print \$1 \";\" \$2 \";\"}' | tr -d '\n'"
 CMD_NEW_SESSION="${EXECUTABLE} -u"
 CMD_DETACH="${EXECUTABLE} detach-client -s"
-CMD_ATTACH="${EXECUTABLE} attach -t"
+CMD_ATTACH="${EXECUTABLE} -u attach -t"
 
 SCR_MANAGER=$(which tmux)
 
