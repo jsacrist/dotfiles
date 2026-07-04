@@ -12,4 +12,4 @@ stow --adopt bash bin git hyprland i3 screen ssh starship tmux vim waybar
 git restore .
 ```
 
-WARNING: This repository includes my own version of .ssh/authorized_keys, don't donwload it if you don't know what that means!!!
+WARNING: This repository includes my own version of .ssh/authorized_keys, don't download it if you don't know what that means!!!
