@@ -49,8 +49,8 @@ fi
 # Sessions found, show a menu to select one
 OPTION_NEW="New session"
 OPTION_NO="No session"
-INSTRUC="Make a selection"
-SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUC}" \
+INSTRUCTION="Make a selection"
+SELECTION=$(whiptail --title "${EXEC_NAME} sessions" --menu "${INSTRUCTION}" \
     20 80 12 \
     "${OPTION_NEW}" ": Create a new ${EXEC_NAME} session" \
     "${MY_ARR[@]}" \
