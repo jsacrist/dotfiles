@@ -4,15 +4,13 @@
 
 ---@module 'hl'
 
-
 hl.env("GDK_SCALE", 1)
-
--- js-t480 setup
 
 -- Big external monitor
 hl.monitor({
-  output   = "desc:Dell Inc.DELL S3225QS HG6SF94",
+  output   = "desc:Dell Inc. DELL S3225QS HG6SF94",
   mode     = "2560x1440@60",
+  -- mode     = "3840x2160@60",
   position = "0x0",
   scale    = 1,
 })
@@ -21,7 +19,7 @@ hl.monitor({
 hl.monitor({
   output   = "desc:ASUSTek COMPUTER INC ASUS VG24V 0x00025807",
   mode     = "1920x1080@60",
-  position = "0x-1080",
+  position = "320x-1080",
   scale    = 1,
 })
 
