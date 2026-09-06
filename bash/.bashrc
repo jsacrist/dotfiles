@@ -156,6 +156,3 @@ set -o vi
 
 # Set the width of a tab to 4 spaces
 tabs 4    # Set the width of a tab to 4 spaces
-
-
-. "$HOME/.local/share/../bin/env"
